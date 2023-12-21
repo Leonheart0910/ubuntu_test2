@@ -9,78 +9,75 @@
     margin: 0;
     padding: 0;
     font-family: 'Arial', sans-serif;
-    background-color: #215B41; /* 배경색 */
+    background-color: #215B41;
     color: white;
     text-align: center;
     height: 100vh;
     display: flex;
-    flex-direction: column; /* 컨테이너를 세로로 정렬 */
-    justify-content: space-between; /* 컨텐츠 사이에 공간을 균일하게 분배 */
+    flex-direction: column;
+    justify-content: space-between;
   }
   .container {
     max-width: 600px;
     margin: auto;
     padding: 20px;
   }
-  .event-info {
-    font-size: 18px;
-    margin-bottom: 30px; /* 이벤트 정보와 이미지 사이의 간격을 조정 */
+  .heading {
+    font-size: 24px;
+    margin-bottom: 30px;
   }
   .button {
-    background-color: #A4BEA2; /* 버튼의 배경색을 #A4BEA2로 설정 */
-    color: white; /* 버튼의 텍스트 색상을 흰색으로 설정 */
+    background-color: #A4BEA2;
+    color: white;
     border: none;
     padding: 15px 30px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
-    margin: 4px 2px; /* 버튼의 여백을 조정 */
+    margin: 4px 2px;
     cursor: pointer;
-    border-radius: 20px; /* 버튼의 모서리를 둥글게 만듦 */
-  }
-  .heading {
-    font-size: 24px;
-    margin: 0 0 30px 0; /* h1과 버튼 사이의 간격을 조정 */
+    border-radius: 20px;
   }
   .footer {
-    text-align: center; /* 푸터 텍스트를 가운데 정렬 */
-    padding: 20px; /* 푸터의 패딩을 추가 */
-    position: relative; /* 푸터를 상대 위치로 설정 */
-    bottom: 0; /* 하단에 고정 */
-    width: 100%; /* 전체 너비 */
+    display: flex; /* Make the footer a flex container */
+    align-items: center; /* Vertical alignment */
+    justify-content: center; /* Horizontal alignment */
+    text-align: left;
+    padding: 20px;
+    position: relative;
+    width: 100%;
+  }
+  .event-info {
+    margin-left: 20px; /* Add space between the image and text */
   }
   .starbucks-image {
-    background-image: url("https://i.ibb.co/4SKkS9g/Frame-427320661.png" ); /* 이미지 경로 설정 */
-    height: 100px; /* 이미지 높이 설정 */
-    width: 200px; /* 이미지 너비 설정 */
-    background-size: contain; /* 이미지가 div 안에 맞게 조절 */
-    background-repeat: no-repeat; /* 이미지 반복 없음 */
-    display: inline-block; /* 이미지를 inline 요소로 설정 */
-    margin: auto; /* 자동 마진으로 가운데 정렬 */
+    background-image: url("https://i.ibb.co/4SKkS9g/Frame-427320661.png");
+    height: 100px;
+    width: 200px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    display: inline-block;
   }
   @media (max-width: 768px) {
-    body {
-      padding: 40px 20px;
+    .footer {
+      flex-direction: column;
     }
-    .button {
-      width: 100%;
+    .event-info {
+      margin-left: 0;
+      margin-top: 20px;
     }
   }
 </style>
 </head>
 <body>
 <div class="container">
-  <h1 class="heading">어디서 나의 세금이 낭비되고 있을까?<br> 당신의 부가가치세 신고 점수를 확인해보세요!</h1>
-  <a href="/Q1" class="button"> 지금 바로 자가 진단 테스트하고,<br>
-세무사와의 상담으로 신고 부담을 덜어보세요</a>
+  <h1 class="heading">어디서 나의 세금이 낭비되고 있을까?<br>당신의 부가가치세 신고 점수를 확인해보세요!</h1>
+  <a href="/Q1" class="button">지금 바로 자가 진단 테스트하고,<br>세무사와의 상담으로 신고 부담을 덜어보세요</a>
 </div>
 <div class="footer">
-  <div class="starbucks-image"></div> <!-- 여기에 이미지가 들어갈 것입니다 -->
-  <p class="event-info">
-    테스트 후, 무료 설문조사를 위한 연락처 남기시면<br>
-    추첨을 통해 10명에게 스타벅스 기프티콘을 드려요!
-  </p>
+  <div class="starbucks-image"></div>
+  <p class="event-info">테스트 후, 무료 설문조사를 위한 연락처 남기시면<br>추첨을 통해 10명에게 스타벅스 기프티콘을 드려요!</p>
 </div>
 <script>
   window.onload = async function resetCnt() {

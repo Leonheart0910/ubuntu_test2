@@ -1,8 +1,44 @@
-from fastapi import FastAPI, Request
-
+from fastapi import FastAPI
+from pydantic import BaseModel
+import mysql.connector
 app = FastAPI()
 
-# 퀴즈 페이지 결과를 처리하는 엔드포인트
+# Database connection parameters
+db_config = {
+    'host': '43.202.62.169',
+    'user': 'gopher',
+    'password': 'leon#cto',
+    'database': 'tax_checker'
+}
+
+# Define the Pydantic model for request data validation
+class Item(BaseModel):
+    name: str
+    contact: str  # Change 'mobile' to 'contact' to match your HTML form
+    content: str
+    created_at: str
+
+# Function to insert data into the database
+def db_insert(item: Item):
+    # Connect to the database
+    conn = mysql.connector.connect(**db_config)
+    cursor = conn.cursor()
+
+    # Prepare the SQL insert statement
+    insert_query = """
+    INSERT INTO tax_checker (name, contact, story, created_at) 
+    VALUES (%s, %s, %s, %s)
+    """
+    values_to_insert = (item.name, item.contact, item.content, item.created_at)  # Use the correct field names
+
+    # Execute the insert statement
+    cursor.execute(insert_query, values_to_insert)
+    conn.commit()  # Commit the transaction
+
+    # Close the connection
+    cursor.close()
+    conn.close()
+
 cnt = 0
 
 @app.get("/get_cnt")
@@ -73,13 +109,16 @@ async def root():
 async def root():
     return FileResponse('thanks.html')
 
+@app.get("/ad#ministra#tor")
+async def root():
+    return FileResponse('thanks.html')
+
+
 # POST
 from pydantic import BaseModel
-class model(BaseModel):
-    name: str
-    phone: int
 
 @app.post("/send")
-def ppost (data : model):
-    print(data)
-    return {"전송완료"}
+async def send(item: Item):
+    # Insert the data into the database
+    db_insert(item)
+    return {"message": "Data inserted successfully"}
