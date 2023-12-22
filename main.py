@@ -5,10 +5,10 @@ app = FastAPI()
 
 # Database connection parameters
 db_config = {
-    'host': '43.202.62.169',
-    'user': 'gopher',
-    'password': 'leon#cto',
-    'database': 'tax_checker'
+    'host': '',
+    'user': '',
+    'password': '',
+    'database': ''
 }
 
 # Define the Pydantic model for request data validation
